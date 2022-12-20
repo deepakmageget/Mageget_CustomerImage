@@ -1,0 +1,47 @@
+<?php
+$baseurl=$block->baseUrl();
+if ($block->customerId()) {
+
+    $customerCollection = $block->getCustomersCollection();
+    $mediaUrl  = $block->mediaurl();
+    foreach ($customerCollection as $customer) {
+        $customerImage = $customer->getData('customer_image');
+    }
+    ?>
+<h3>Update Profile Image</h3>
+<hr>
+
+<div class="logoContainer">
+    <?php 
+
+    if(!is_null($customerImage) || !empty($customerImage)){ ?>
+<img id="loadCustomerImage" src="<?php echo $mediaUrl.'mageget_customer'.$customerImage ?>">
+<?php } else{?>
+<img id="loadCustomerImage" src="https://i.ibb.co/LZ6JJ7d/User-Profile-PNG.png">
+<?php } ?>
+</div>
+<div class="fileContainer sprite">
+    <?php if(!is_null($customerImage) || !empty($customerImage)){ ?>
+<span>Change Your Profile Image</span>
+<?php } else{?>
+    <span>Choose Your Profile Image</span>
+<?php } ?>
+<form action="" id="customerimageform">
+<input type="hidden" id="baseUrl" value="<?php echo $baseurl ?>"/>
+<input type="file" id="customerImage" name="customer_image" >
+</div>
+<div class="customerimageerror">
+<span></span>
+</div>
+<div class="frame">
+<button class="custom-btn btn-11" value="submit" id="customerImageUpload">Upload<div class="dot"></div> </button>
+</div>
+</form>
+
+
+    <?php 
+}else{
+    header("Location:$baseurl.'customer/account/login/referer/'");
+}
+
+?>

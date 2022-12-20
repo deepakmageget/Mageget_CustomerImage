@@ -1,0 +1,35 @@
+<?php
+$customerCollection = $block->getCustomersCollection();
+$mediaUrl  =$block->mediaurl();
+$baseurl=$block->baseUrl();
+foreach ($customerCollection as $customer) {
+    $customerImage = $customer->getData('customer_image');
+}
+?>
+<div class="cust-image">
+   <div class="customer-image-aligin">
+   
+   <strong class="box-title">
+      <span>Profile Image</span>
+   </strong>
+   <?php if(!is_null($customerImage) || !empty($customerImage)){
+        ?>
+<img class="loadCustomerImage" src="<?php echo $mediaUrl.'mageget_customer'.$customerImage ?>">
+<br>
+<input type="hidden" id="baseUrl" value="<?php echo $baseurl ?>"/>
+<a class="custmeraction" href="<?php echo $baseurl ?>customerimage/customer/index/">Change</a>
+<a  class="custmeraction" id="customerImageDel" href="javascript:void(0)">Remove</a>
+<?php } else{
+        ?>
+<img class="loadCustomerImageRemove"  src="https://i.ibb.co/LZ6JJ7d/User-Profile-PNG.png">
+<br>
+<a class="custmeraction" href="<?php echo $baseurl ?>customerimage/customer/index/">Upload</a>
+<?php } ?>
+
+
+
+</div>
+</div>
+
+
+
